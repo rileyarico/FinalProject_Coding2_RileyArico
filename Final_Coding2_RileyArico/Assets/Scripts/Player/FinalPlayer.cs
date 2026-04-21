@@ -7,8 +7,7 @@ public class FinalPlayer : MonoBehaviour
     [Header("Movement")]
     public float walkSpeed = 5f;
     public float runSpeed = 9f;
-    private float jumpForce = 5f;
-    private bool isRunning;
+    private float jumpForce = 5f;private bool isRunning;
     private bool jumpReady;
 
     private float health = 5f;
@@ -31,10 +30,43 @@ public class FinalPlayer : MonoBehaviour
     public bool isGrounded;
     public Transform groundCheck;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     private void Update()
     {
         CameraLook();
         GroundCheck();
+    }
+    private void FixedUpdate()
+    {
+        float currentSpeed;
+        //checking state of our variable & updating current speed based on bool
+        if (isRunning)
+        {
+            currentSpeed = runSpeed;
+        }
+        else
+        {
+            currentSpeed = walkSpeed;
+        }
+
+        Vector3 move = transform.forward * moveInput.y * currentSpeed +
+            transform.right * moveInput.x * currentSpeed;
+
+        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+
+        //come back l8r to do jump
+        if (jumpReady && isGrounded)
+        {
+            jumpReady = false;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
     }
     private void GroundCheck()
     {
