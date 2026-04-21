@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -12,10 +13,34 @@ public class WeaponManager : MonoBehaviour
     private int weaponIndex;
     public HotbarManager hotbarManager;
 
+
     private void Update()
     {
         //checks if there is a weapon change to another slot
         CheckWeaponSwitch();
+    }
+
+    public void AddWeapon(GameObject weapon, Image inventoryImage)
+    {
+        //finds a open slot
+        //add weapon to list
+        //give image to open inventory slot
+        for(int i = 0; i < hotbarManager.inventorySlots.Count; i++)
+        {
+            //if this hot bar item's slot is false
+            if (hotbarManager.inventorySlots[i].GetComponent<HotbarItemSlot>().isHolding == false)
+            {
+                //add weapon to this list
+                weaponList.Add(weapon);
+                //instantiate new Image as a child
+                Instantiate(inventoryImage, hotbarManager.inventorySlots[i].transform);
+                //set isHolding true in HotbarItem script
+                hotbarManager.inventorySlots[i].GetComponent<HotbarItemSlot>().isHolding = true;
+
+                //adding on both these lists should be okay, we aren't removing
+                //so indexes of images & gameobjects should be the same
+            }
+        }
     }
 
     private void CheckWeaponSwitch()
