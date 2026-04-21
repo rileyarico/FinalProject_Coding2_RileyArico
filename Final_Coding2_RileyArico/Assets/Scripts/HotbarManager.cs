@@ -6,7 +6,7 @@ public class HotbarManager : MonoBehaviour
 {
     //grab inventory slots
     public List<Image> inventorySlots = new List<Image>();
-    public Color highlightColor;
+    //public Color highlightColor;
     private Image currentlyHighlighted;
 
     public void HighlightThis(int index)
@@ -16,7 +16,7 @@ public class HotbarManager : MonoBehaviour
             currentlyHighlighted.color = Color.white;
         }
         currentlyHighlighted = inventorySlots[index];
-        currentlyHighlighted.color = highlightColor;
+        currentlyHighlighted.color = Color.red;
 
     }
 }

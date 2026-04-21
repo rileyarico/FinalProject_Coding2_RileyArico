@@ -25,17 +25,27 @@ public class WeaponManager : MonoBehaviour
         //finds a open slot
         //add weapon to list
         //give image to open inventory slot
-        for(int i = 0; i < hotbarManager.inventorySlots.Count; i++)
+        for(int i = 0; i <= hotbarManager.inventorySlots.Count; i++)
         {
             //if this hot bar item's slot is false
-            if (hotbarManager.inventorySlots[i].GetComponent<HotbarItemSlot>().isHolding == false)
+            HotbarItemSlot thisItemSlot = hotbarManager.inventorySlots[i].GetComponent<HotbarItemSlot>();
+            if (thisItemSlot.isHolding == false)
             {
                 //add weapon to this list
-                weaponList.Add(weapon);
+                weaponList.Add(Instantiate(weapon, weaponSocket.transform));
                 //instantiate new Image as a child
                 Instantiate(inventoryImage, hotbarManager.inventorySlots[i].transform);
                 //set isHolding true in HotbarItem script
                 hotbarManager.inventorySlots[i].GetComponent<HotbarItemSlot>().isHolding = true;
+                if(weaponList.Count == 1)
+                {
+                    hotbarManager.HighlightThis(0);
+                }
+
+                //instant
+
+                i = 10;
+                return;
 
                 //adding on both these lists should be okay, we aren't removing
                 //so indexes of images & gameobjects should be the same

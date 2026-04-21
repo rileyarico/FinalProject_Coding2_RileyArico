@@ -13,9 +13,9 @@ public class WeaponPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //send over prefab & image
-        weaponManager.AddWeapon(weaponPrefab, inventoryImage);
         //destroy this
         Destroy(this.gameObject);
+        //send over prefab & image
+        weaponManager.AddWeapon(weaponPrefab, inventoryImage);
     }
 }
