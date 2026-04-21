@@ -32,7 +32,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        objectToSpawn = inventoryItemPrefab[0]; //CHANGE OBJECT YOU WANT TO SPAWN!! This code sucks
+        //objectToSpawn = inventoryItemPrefab[0]; //CHANGE OBJECT YOU WANT TO SPAWN!! This code sucks
         //wut is this girl talking about
     }
     void SpawnNewItem(Item item, InventorySlot slot)
