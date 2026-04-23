@@ -6,19 +6,20 @@ using static UnityEditor.Progress;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Bullet Data")]
     public GameObject bulletPrefab;
-    private Vector3 bulletSpawnPos;
-    //public int instantiateHowMany = 1;
-
     public float bulletLifeTime = 5f;
+    public float bulletVelocity = 20f;
 
-    //public Transform newSpawn;
+    //ammo management
+    public int ammoTotal = 5;
+    private int heldAmmo;
 
+    //cooldown stuff
     public float fireCooldown;
     private float timer = 0;
     private bool canFire = true;
 
-    public float bulletVelocity = 20f;
 
     void Update()
     {
@@ -41,12 +42,13 @@ public class Weapon : MonoBehaviour
 
         //so it doesnt shoot before we pick it up, it has to be active
         //when we click the left mouse button & we have the weapon & its active
-        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire)
+        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire && heldAmmo > 0)
         {
             Debug.Log("Fire Performed");
             //perform fire
             Fire();
             timer = fireCooldown;
+            heldAmmo -= 1;
         }
     }
 
@@ -55,7 +57,7 @@ public class Weapon : MonoBehaviour
         //the direction we want the bullet to go in
         Vector3 direction = -transform.right; //Oh my god idk why this works but doing "-" makes it rotate -90*
         //we want to take the position of our weapon & add transform.up and then offset it so it is in front.
-        bulletSpawnPos = transform.position + transform.up * 0.5f;
+        Vector3 bulletSpawnPos = transform.position + transform.up * 0.5f;
 
         //Quaternion rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         //spawn bullet

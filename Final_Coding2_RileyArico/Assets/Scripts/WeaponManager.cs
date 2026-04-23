@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,15 @@ public class WeaponManager : MonoBehaviour
     private int weaponIndex;
     public HotbarManager hotbarManager;
 
+    [Header("UI")]
+    public TextMeshProUGUI displayAmmoAmt;
 
     private void Update()
     {
         //checks if there is a weapon change to another slot
         CheckWeaponSwitch();
+        //update UI based on current index
+
     }
 
     public void AddWeapon(GameObject weapon, Image inventoryImage)
@@ -86,4 +91,5 @@ public class WeaponManager : MonoBehaviour
             hotbarManager.HighlightThis(2);
         }
     }
+
 }
