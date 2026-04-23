@@ -45,12 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba5043cad80afa4ead1b318fc9fab55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  bulletPrefab: {fileID: 8560165773442422073, guid: 835d66684da2d6d4f9db0e4255cc790b, type: 3}
-  bulletSpawnPos: {x: 0, y: 0, z: 0}
-  instantiateHowMany: 1
+  bulletPrefab: {fileID: 1786307777092443979, guid: fab81059a11f4ec46918e621843f3362, type: 3}
   bulletLifeTime: 5
-  newSpawn: {fileID: 0}
-  fireCooldown: 0
+  fireCooldown: 1
   bulletVelocity: 20
 --- !u!1001 &8343192305743511905
 PrefabInstance:
