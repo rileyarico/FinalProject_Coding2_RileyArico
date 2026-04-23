@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
 
         //so it doesnt shoot before we pick it up, it has to be active
         //when we click the left mouse button & we have the weapon & its active
-        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire && heldAmmo > 0)
+        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire /*&& heldAmmo > 0*/)
         {
             Debug.Log("Fire Performed");
             //perform fire
