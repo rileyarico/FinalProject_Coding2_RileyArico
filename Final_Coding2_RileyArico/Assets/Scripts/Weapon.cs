@@ -7,61 +7,68 @@ using static UnityEditor.Progress;
 public class Weapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Vector3 bulletSpawnPos;
-    public int instantiateHowMany = 1;
+    private Vector3 bulletSpawnPos;
+    //public int instantiateHowMany = 1;
 
-    public float bulletLifeTime;
+    public float bulletLifeTime = 5f;
 
-    public Transform newSpawn;
+    //public Transform newSpawn;
 
     public float fireCooldown;
     private float timer = 0;
-    private bool canFire;
+    private bool canFire = true;
 
     public float bulletVelocity = 20f;
 
     void Update()
     {
         //subtract time elapsed from timer
-        timer -= Time.deltaTime;
+        if (timer > 0)
+        { 
+            timer -= Time.deltaTime;
+            canFire = false;
+        }
 
         //checks if cooldown is over
-        if (timer < 0)
+        if (timer <= 0)
         {
             //makes weapon able to fire
             canFire = true;
 
             //resets the cooldown
-            timer = fireCooldown;
+            //timer = fireCooldown;
         }
 
         //so it doesnt shoot before we pick it up, it has to be active
         //when we click the left mouse button & we have the weapon & its active
         if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire)
         {
+            Debug.Log("Fire Performed");
             //perform fire
-            Fire2();
-
+            Fire();
+            timer = fireCooldown;
         }
     }
 
     void Fire()
     {
         //the direction we want the bullet to go in
-        Vector3 direction = transform.up;
+        Vector3 direction = -transform.right; //Oh my god idk why this works but doing "-" makes it rotate -90*
         //we want to take the position of our weapon & add transform.up and then offset it so it is in front.
         bulletSpawnPos = transform.position + transform.up * 0.5f;
 
+        //Quaternion rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         //spawn bullet
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, this.transform.rotation);
         //shoot bullet
-        //bullet.GetComponent<Rigidbody>().AddForce(direction * bulletVelocity, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(direction * bulletVelocity, ForceMode.Impulse);
+        Debug.Log("Spawned Bullet");
         //destroy bullet after some time (after 3 seconds)
         Destroy(bullet, bulletLifeTime);
 
     }
 
-    void Fire2()
+    /*void Fire2()
     {
         //runs this code for how many times the weapon is supposed to fire
         for (int i = 0; i < instantiateHowMany; i++)
@@ -76,5 +83,5 @@ public class Weapon : MonoBehaviour
             Destroy(newBullet, 3f);
             //bullet cooldown
         }
-    }
+    }*/
 }

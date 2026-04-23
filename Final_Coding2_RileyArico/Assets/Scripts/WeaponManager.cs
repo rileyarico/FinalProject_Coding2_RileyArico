@@ -41,10 +41,16 @@ public class WeaponManager : MonoBehaviour
                 {
                     hotbarManager.HighlightThis(0);
                 }
+                else if (weaponList.Count >= 2)
+                {
+                    //grab last item of WeaponList
+                    //set inactive
+                    weaponList[weaponList.Count - 1].gameObject.SetActive(false);
+                }
 
-                //instant
+                    //instant
 
-                i = 10;
+                    i = 10;
                 return;
 
                 //adding on both these lists should be okay, we aren't removing

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1234901029170511619}
+  - component: {fileID: 2993492271014306465}
   m_Layer: 0
   m_Name: Shotgun_Gun_Model
   m_TagString: Untagged
@@ -32,6 +33,25 @@ Transform:
   - {fileID: 8377328968434460298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2993492271014306465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637183151315503780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba5043cad80afa4ead1b318fc9fab55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  bulletPrefab: {fileID: 8560165773442422073, guid: 835d66684da2d6d4f9db0e4255cc790b, type: 3}
+  bulletSpawnPos: {x: 0, y: 0, z: 0}
+  instantiateHowMany: 1
+  bulletLifeTime: 5
+  newSpawn: {fileID: 0}
+  fireCooldown: 0
+  bulletVelocity: 20
 --- !u!1001 &8343192305743511905
 PrefabInstance:
   m_ObjectHideFlags: 0
