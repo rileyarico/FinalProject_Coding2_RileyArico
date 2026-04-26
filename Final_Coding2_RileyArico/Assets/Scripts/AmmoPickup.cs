@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    public string ammoForName;
-
+    public AmmoTypesSO ammoType;
+    private WeaponManager weaponManager;
+    private void Start()
+    {
+        weaponManager = FindFirstObjectByType<WeaponManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Picked up " + ammoForName + "ammo");
-
+        weaponManager.AddAmmoTo(ammoType.forWhichWeapon, ammoType.amount);
+        Debug.Log("Picked up " + ammoType.ammoName);
     }
 }

@@ -25,6 +25,19 @@ public class WeaponManager : MonoBehaviour
 
     }
 
+    public void AddAmmoTo(String weaponName, int amount)
+    {
+        foreach(var weapon in weaponList)
+        {
+            if(weapon.name == weaponName)
+            {
+                weapon.GetComponent<Weapon>().heldExtraAmmo += amount;
+                Debug.Log("Added " + amount + " ammo to " + weapon.name);
+                return;
+            }
+        }
+    }
+
     public void AddWeapon(GameObject weapon, Image inventoryImage)
     {
         //finds a open slot

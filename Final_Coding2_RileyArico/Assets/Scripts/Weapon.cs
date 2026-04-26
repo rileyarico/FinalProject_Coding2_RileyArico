@@ -12,14 +12,19 @@ public class Weapon : MonoBehaviour
     public float bulletVelocity = 20f;
 
     //ammo management
-    public int ammoTotal = 5;
-    private int heldAmmo;
+    public int maxAmmo = 5;
+    private int activeAmmo;
+    [HideInInspector] public int heldExtraAmmo = 0;
 
     //cooldown stuff
     public float fireCooldown;
     private float timer = 0;
     private bool canFire = true;
 
+    private void Start()
+    {
+        activeAmmo = maxAmmo;
+    }
 
     void Update()
     {
@@ -42,13 +47,22 @@ public class Weapon : MonoBehaviour
 
         //so it doesnt shoot before we pick it up, it has to be active
         //when we click the left mouse button & we have the weapon & its active
-        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire /*&& heldAmmo > 0*/)
+        if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire && activeAmmo > 0)
         {
             Debug.Log("Fire Performed");
             //perform fire
             Fire();
             timer = fireCooldown;
-            heldAmmo -= 1;
+            activeAmmo -= 1;
+        }
+        else if (this.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0) && canFire && activeAmmo <= 0)
+        {
+            Debug.Log("Out of Active Ammo! Reload with R or pickup more!");
+        }
+
+        if (this.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
         }
     }
 
@@ -70,6 +84,37 @@ public class Weapon : MonoBehaviour
 
     }
 
+    private void Reload()
+    {
+        //idk if we will use this
+        if (heldExtraAmmo > 0)
+        { 
+            //check the amount of ammo missing from active
+            int emptyammo = maxAmmo - activeAmmo;
+
+            //check if we can add all of EmptyAmmo, or as much as we have
+            //so if the blank space is more than held,
+            if (emptyammo >= heldExtraAmmo)
+            {
+                //add only what is held
+                activeAmmo += heldExtraAmmo;
+                heldExtraAmmo = 0;
+            }
+            else
+            {
+                //if we have more extraAmmo than empty,
+                //subtract empty from our extra total,
+                heldExtraAmmo -= emptyammo;
+                //set active ammo to max capacity
+                activeAmmo = maxAmmo;
+            }
+            Debug.Log("Reloaded " + gameObject.name);
+        }
+        else
+        {
+            Debug.Log("No extra ammo! go pick some up!");
+        }
+    }
     /*void Fire2()
     {
         //runs this code for how many times the weapon is supposed to fire

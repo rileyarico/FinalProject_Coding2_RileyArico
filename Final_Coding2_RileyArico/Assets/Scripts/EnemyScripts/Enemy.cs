@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
-    public TextMeshProUGUI healthBar;
+    public float maxHealth;
+    private float currentHealth;
+    public Image healthBar;
 
     public GameObject dropLoot;
 
@@ -20,14 +22,13 @@ public class Enemy : MonoBehaviour
     private Vector3 pointB;
 
 
-
     private void OnTriggerEnter(Collider other)
     {
         //if the enemy is hit by a bullet
         if (other.CompareTag("Bullet"))
         {
             //subtract 1 from enemy's health.
-            health -= 1f;
+            currentHealth -= 1f;
 
             //destroy bullet if it makes contact with enemy
             Destroy(other.gameObject);
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         pointA = transform.position;
         pointB = new Vector3 (transform.position.x + moveDistance, transform.position.y, transform.position.z);
     }
@@ -43,10 +45,10 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //update the current health shown in game each frame
-        healthBar.text = "H:" + health;
+        healthBar.fillAmount = currentHealth / maxHealth;
 
         MoveEnemy();
-        if(health <= 0)
+        if(currentHealth <= 0)
         {
             if (dropLoot != null)
             {
