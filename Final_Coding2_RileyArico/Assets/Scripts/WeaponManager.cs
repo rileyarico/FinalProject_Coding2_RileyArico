@@ -13,16 +13,19 @@ public class WeaponManager : MonoBehaviour
     //keep track of current index so we can set it false when switching
     private int weaponIndex;
     public HotbarManager hotbarManager;
+    private AmmoUI ammoUI;
 
     [Header("UI")]
     public TextMeshProUGUI displayAmmoAmt;
 
+    private void Start()
+    {
+        ammoUI = FindFirstObjectByType<AmmoUI>();
+    }
     private void Update()
     {
         //checks if there is a weapon change to another slot
         CheckWeaponSwitch();
-        //update UI based on current index
-
     }
 
     public void AddAmmoTo(String weaponName, int amount)
@@ -58,6 +61,7 @@ public class WeaponManager : MonoBehaviour
                 if(weaponList.Count == 1)
                 {
                     hotbarManager.HighlightThis(0);
+                    ammoUI.SwitchWeaponAmmo(weaponList[0].GetComponent<Weapon>());
                 }
                 else if (weaponList.Count >= 2)
                 {
@@ -86,6 +90,7 @@ public class WeaponManager : MonoBehaviour
             weaponIndex = 0;
             Debug.Log("Switched to weapon " + (weaponIndex + 1));
             hotbarManager.HighlightThis(0);
+            ammoUI.SwitchWeaponAmmo(weaponList[0].GetComponent<Weapon>());
         }
         if (Input.GetKeyUp(KeyCode.Alpha2) && weaponList.Count >= 2)
         {
@@ -94,6 +99,7 @@ public class WeaponManager : MonoBehaviour
             weaponIndex = 1;
             Debug.Log("Switched to weapon " + (weaponIndex + 1));
             hotbarManager.HighlightThis(1);
+            ammoUI.SwitchWeaponAmmo(weaponList[1].GetComponent<Weapon>());
         }
         if (Input.GetKeyUp(KeyCode.Alpha3) && weaponList.Count >= 3)
         {
@@ -102,6 +108,7 @@ public class WeaponManager : MonoBehaviour
             weaponIndex = 2;
             Debug.Log("Switched to weapon " + (weaponIndex + 1));
             hotbarManager.HighlightThis(2);
+            ammoUI.SwitchWeaponAmmo(weaponList[2].GetComponent<Weapon>());
         }
     }
 
