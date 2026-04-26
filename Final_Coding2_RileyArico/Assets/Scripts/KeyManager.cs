@@ -15,6 +15,7 @@ public class KeyManager : MonoBehaviour
     //instantiate key image & add to list
     public void PickedUpKey()
     {
+        heldKeys++;
         Image addThis = Instantiate(keyImagesPrefab, keyContainerUI.transform); //add as a child of keycontainer
         keyImgs.Add(addThis);
     }
