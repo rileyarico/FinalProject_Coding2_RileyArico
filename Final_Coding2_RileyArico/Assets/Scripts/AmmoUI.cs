@@ -10,7 +10,7 @@ public class AmmoUI : MonoBehaviour
     //has text for total extra ammo,
     //as well as another nested panel w/ a horizontal layout group,
     //which holds images of bullets, amounts corresponding with the current
-    //weapon's currently active ammo
+    //weapon's currently active ammo.
     public TextMeshProUGUI extraHeldAmmoTxt;
     public GameObject activeAmmoPanel;
     public Image ammoImgPrefab;

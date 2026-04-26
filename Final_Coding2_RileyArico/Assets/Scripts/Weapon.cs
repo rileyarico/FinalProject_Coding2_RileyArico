@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
 
     //ammo management
     public int maxAmmo = 5;
-    private int activeAmmo;
+    [HideInInspector] public int activeAmmo;
     [HideInInspector] public int heldExtraAmmo = 0;
 
     //cooldown stuff
