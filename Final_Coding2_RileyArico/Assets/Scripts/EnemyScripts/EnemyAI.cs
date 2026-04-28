@@ -38,7 +38,6 @@ public class EnemyAI : MonoBehaviour
 
     //testing smth
     float distanceToPlayer;
-    float timerY = 0;
 
     void Start()
     {
@@ -48,18 +47,15 @@ public class EnemyAI : MonoBehaviour
         
         currentState = EnemyState.Patrol; //start with patrolling
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        //if the enemy is hit by a bullet
-        /*if (other.CompareTag("Bullet"))
+        if(other.gameObject.GetComponent<Bullet>() != null)
         {
-            //subtract 1 from enemy's health.
-            health -= 1;
-
-            //destroy bullet if it makes contact with enemy
+            currentHealth -= other.gameObject.GetComponent<Bullet>().damage;
+            Debug.Log("Enemy took " + other.gameObject.GetComponent<Bullet>().damage + " damage");
+            Debug.Log("Remaining health = " + currentHealth);
             Destroy(other.gameObject);
-        }*/
+        }
     }
 
     void Update()
@@ -68,6 +64,12 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
+
+        if (currentHealth <= 0)
+        {
+            ChangeState(EnemyState.Death);
+        }
         //switch statement determines what behaviors the enemies should perform based on its current state
         //switch statement checks current state of enemy & decides which behavior to execute
         switch (currentState)
@@ -112,15 +114,8 @@ public class EnemyAI : MonoBehaviour
                     GameObject drop = Instantiate(dropLoot, this.transform.position, dropLoot.transform.rotation);
                 }
 
-                //Destroy(gameObject);
+                Destroy(gameObject);
                 break;
-        }
-        //update 
-        healthBar.fillAmount = currentHealth / maxHealth;
-
-        if (currentHealth <= 0)
-        {
-            ChangeState(EnemyState.Death);
         }
     }
 
