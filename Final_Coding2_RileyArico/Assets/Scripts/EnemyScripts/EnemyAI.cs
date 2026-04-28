@@ -3,6 +3,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class EnemyAI : MonoBehaviour
 
     //enemy states loaded from json
     public string enemyType;
-    private int health;
+    private float maxHealth;
+    private float currentHealth;
     private float speed;
     private float detectionRange = 10f;
     private float attackRange;
@@ -29,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     private int collisionCount = 0;
 
     //for visual health bar
-    public TextMeshProUGUI healthBar;
+    public Image healthBar;
     
     //what enemy drops once killed
     public GameObject dropLoot;
@@ -42,6 +44,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         LoadEnemyData(enemyType);
+        currentHealth = maxHealth;
         
         currentState = EnemyState.Patrol; //start with patrolling
     }
@@ -49,14 +52,14 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if the enemy is hit by a bullet
-        if (other.CompareTag("Bullet"))
+        /*if (other.CompareTag("Bullet"))
         {
             //subtract 1 from enemy's health.
             health -= 1;
 
             //destroy bullet if it makes contact with enemy
             Destroy(other.gameObject);
-        }
+        }*/
     }
 
     void Update()
@@ -109,13 +112,13 @@ public class EnemyAI : MonoBehaviour
                     GameObject drop = Instantiate(dropLoot, this.transform.position, dropLoot.transform.rotation);
                 }
 
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 break;
         }
         //update 
-        healthBar.text = "H:" + health;
+        healthBar.fillAmount = currentHealth / maxHealth;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             ChangeState(EnemyState.Death);
         }
@@ -196,7 +199,7 @@ public class EnemyAI : MonoBehaviour
                 if(enemy.name == enemyName)
                 {
                     Debug.Log($"Enemy: {enemy.name} found! Assigning Stats...");
-                    health = enemy.health;
+                    maxHealth = enemy.health;
                     speed = enemy.speed; 
                     detectionRange = enemy.detectionRange;
                     attackRange = enemy.attackRange;
