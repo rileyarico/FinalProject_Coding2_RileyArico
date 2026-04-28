@@ -51,10 +51,16 @@ public class EnemyAI : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Bullet>() != null)
         {
-            currentHealth -= other.gameObject.GetComponent<Bullet>().damage;
-            Debug.Log("Enemy took " + other.gameObject.GetComponent<Bullet>().damage + " damage");
-            Debug.Log("Remaining health = " + currentHealth);
-            Destroy(other.gameObject);
+            collisionCount++;
+            float dmg = other.gameObject.GetComponent<Bullet>().damage;
+            if (collisionCount <= 1)
+            {
+                currentHealth -= dmg;
+                Destroy(other.gameObject);
+                collisionCount = 0;
+            }
+            Debug.Log("Dealt " + dmg + "to enemy");
+            Debug.Log("Health is " + currentHealth);
         }
     }
 
