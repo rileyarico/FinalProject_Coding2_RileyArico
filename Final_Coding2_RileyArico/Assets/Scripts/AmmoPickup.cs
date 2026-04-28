@@ -10,7 +10,16 @@ public class AmmoPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        weaponManager.AddAmmoTo(ammoType.forWhichWeapon, ammoType.amount);
-        Debug.Log("Picked up " + ammoType.ammoName);
+        if (other.GetComponent<FinalPlayer>() == null) return;
+
+        if (weaponManager.DoesWeaponExist(ammoType.forWhichWeapon))
+        {
+            Debug.Log("Recieved true for weapon existing.");
+            weaponManager.AddAmmoTo(ammoType.forWhichWeapon, ammoType.amount);
+            Debug.Log("Picked up " + ammoType.ammoName);
+            Destroy(gameObject);
+            return;
+        }
+        Debug.Log("Couldn't find which ammo this belongs to. Ammo is for " + ammoType.forWhichWeapon);
     }
 }

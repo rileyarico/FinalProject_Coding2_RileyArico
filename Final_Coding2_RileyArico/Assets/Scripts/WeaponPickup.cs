@@ -13,9 +13,11 @@ public class WeaponPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<FinalPlayer>() == null) return;
         //destroy this
         Destroy(this.gameObject);
         //send over prefab & image
         weaponManager.AddWeapon(weaponPrefab, inventoryImage);
+        Debug.Log("Picked up " + gameObject.name);
     }
 }

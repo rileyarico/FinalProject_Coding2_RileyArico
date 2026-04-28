@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public float bulletVelocity = 20f;
 
     //ammo management
+    public string weaponName;
     public int maxAmmo = 5;
     [HideInInspector] public int activeAmmo;
     [HideInInspector] public int heldExtraAmmo = 0;

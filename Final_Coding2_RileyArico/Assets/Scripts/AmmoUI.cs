@@ -43,6 +43,7 @@ public class AmmoUI : MonoBehaviour
 
     private void RemoveAmmo()
     {
+        Destroy(ammoIcons[0]);
         ammoIcons.RemoveAt(0);
     }
     private void PopulateAmmo()

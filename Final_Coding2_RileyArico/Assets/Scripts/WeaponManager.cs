@@ -32,15 +32,38 @@ public class WeaponManager : MonoBehaviour
     {
         foreach(var weapon in weaponList)
         {
-            if(weapon.name == weaponName)
+            if(weapon.GetComponent<Weapon>().weaponName == weaponName)
             {
                 weapon.GetComponent<Weapon>().heldExtraAmmo += amount;
-                Debug.Log("Added " + amount + " ammo to " + weapon.name);
+                Debug.Log("Added " + amount + " ammo to " + weapon.GetComponent<Weapon>().weaponName);
+                Debug.Log("Total extra ammo for " + weapon.GetComponent<Weapon>().weaponName + " = " + weapon.GetComponent<Weapon>().heldExtraAmmo);
                 return;
             }
         }
+        Debug.Log("Ammo does not match any existing weapon type yet");
     }
 
+    public bool DoesWeaponExist(String weaponName)
+    {
+        foreach (var weapon in weaponList)
+        {
+            if (weapon.GetComponent<Weapon>().weaponName == weaponName)
+            {
+
+                Debug.Log("Weapon for this ammo exists, returning true");
+                return true;
+            }
+        }
+
+        Debug.Log("Weapon for this ammo DOES NOT exist, returning false");
+        string listOf = "";
+        foreach (var weapon in weaponList)
+        {
+            listOf += " " + weapon.GetComponent<Weapon>().weaponName;
+        }
+        Debug.Log("List of weapon names = " + listOf);
+        return false;
+    }
     public void AddWeapon(GameObject weapon, Image inventoryImage)
     {
         //finds a open slot

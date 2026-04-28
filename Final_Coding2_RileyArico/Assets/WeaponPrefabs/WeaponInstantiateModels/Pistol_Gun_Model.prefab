@@ -47,8 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   bulletPrefab: {fileID: 555078056924961318, guid: 10fad8264c5e4624ba99ac528a6c5dd5, type: 3}
   bulletLifeTime: 5
-  fireCooldown: 0.75
   bulletVelocity: 20
+  weaponName: Pistol
+  maxAmmo: 12
+  activeAmmo: 0
+  heldExtraAmmo: 0
+  fireCooldown: 0.75
 --- !u!1001 &1778552018133187160
 PrefabInstance:
   m_ObjectHideFlags: 0

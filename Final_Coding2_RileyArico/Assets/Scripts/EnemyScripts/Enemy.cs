@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //update the current health shown in game each frame
-        healthBar.fillAmount = currentHealth / maxHealth;
+        //healthBar.fillAmount = currentHealth / maxHealth;
 
         MoveEnemy();
         if(currentHealth <= 0)
