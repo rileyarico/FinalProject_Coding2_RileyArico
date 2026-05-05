@@ -26,12 +26,16 @@ public class EnemyAI : MonoBehaviour
     private float detectionRange = 10f;
     private float attackRange;
     private float attackCoolDown;
+    private float currentAttackCooldown = 0;
 
     private float lastAttackTime;
     private int collisionCount = 0;
 
     //for visual health bar
     public Image healthBar;
+
+    //vfx prefab
+    public GameObject vFXSpritePrefab;
     
     //what enemy drops once killed
     public GameObject dropLoot;
@@ -71,6 +75,11 @@ public class EnemyAI : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
+
+        if(currentAttackCooldown > 0)
+        {
+            currentAttackCooldown -= Time.deltaTime;
+        }
 
         if (currentHealth <= 0)
         {
@@ -165,12 +174,14 @@ public class EnemyAI : MonoBehaviour
     }
     void AttackBehavior()
     {
-        if(Time.time >= lastAttackTime + attackCoolDown)
+        if (currentAttackCooldown <= 0)
         {
-            lastAttackTime = Time.time;
-            FPSPlayer instance = new FPSPlayer();
-            instance.TakeDamage();
-            Debug.Log("Enemy Attacked Player");
+            Debug.Log("Dealt damage to Player");
+            player.GetComponent<FinalPlayer>().currentHealth -= 2;
+            currentAttackCooldown = attackCoolDown;
+            Vector3 spawnPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.75f);
+            GameObject vFX = Instantiate(vFXSpritePrefab, spawnPos, Quaternion.identity);
+            vFX.transform.SetParent(this.transform, true);
         }
     }
 

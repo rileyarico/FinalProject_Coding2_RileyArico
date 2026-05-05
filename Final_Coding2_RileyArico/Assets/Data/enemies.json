@@ -29,8 +29,8 @@
       "health": 10,
       "speed": 4,
       "detectionRange": 10,
-      "attackRange": 0.75,
-      "attackCoolDown": 5
+      "attackRange": 1.35,
+      "attackCoolDown": 2
     }
   ]
 }

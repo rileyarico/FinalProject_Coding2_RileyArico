@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletLifeTime = 5f;
     public float bulletVelocity = 20f;
+    public Camera playerCam;
 
     //ammo management
     public string weaponName;
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         activeAmmo = maxAmmo;
+        playerCam = Camera.main;
     }
 
     void Update()
@@ -70,18 +72,23 @@ public class Weapon : MonoBehaviour
     void Fire()
     {
         //the direction we want the bullet to go in
-        Vector3 direction = -transform.right; //Oh my god idk why this works but doing "-" makes it rotate -90*
+         Vector3 direction = -transform.right; //Oh my god idk why this works but doing "-" makes it rotate -90*
         //we want to take the position of our weapon & add transform.up and then offset it so it is in front.
         Vector3 bulletSpawnPos = transform.position + transform.up * 0.5f;
 
         //Quaternion rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-        //spawn bullet
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, this.transform.rotation);
-        //shoot bullet
-        bullet.GetComponent<Rigidbody>().AddForce(direction * bulletVelocity, ForceMode.Impulse);
-        Debug.Log("Spawned Bullet");
-        //destroy bullet after some time (after 3 seconds)
-        Destroy(bullet, bulletLifeTime);
+
+        RaycastHit hit;
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 100f))
+        {
+            //spawn bullet
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, this.transform.rotation);
+            //shoot bullet
+            bullet.GetComponent<Rigidbody>().AddForce(direction * bulletVelocity, ForceMode.Impulse);
+            Debug.Log("Spawned Bullet");
+            //destroy bullet after some time (after 3 seconds)
+            Destroy(bullet, bulletLifeTime);
+        }
 
     }
 

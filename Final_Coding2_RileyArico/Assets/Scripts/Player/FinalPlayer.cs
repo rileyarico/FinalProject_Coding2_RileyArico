@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class FinalPlayer : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class FinalPlayer : MonoBehaviour
     private float jumpForce = 5f;private bool isRunning;
     private bool jumpReady;
 
-    private float health = 5f;
+    public float maxHealth = 10f;
+    public Image healthBarImg;
+    [HideInInspector] public float currentHealth;
 
     [Header("Camera")]
     public Transform cameraTransform;
@@ -32,6 +35,7 @@ public class FinalPlayer : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,6 +45,7 @@ public class FinalPlayer : MonoBehaviour
     {
         CameraLook();
         GroundCheck();
+        healthBarImg.fillAmount = currentHealth / maxHealth;
     }
     private void FixedUpdate()
     {
