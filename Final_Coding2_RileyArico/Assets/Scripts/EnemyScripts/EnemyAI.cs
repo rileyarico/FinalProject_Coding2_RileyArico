@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
+    //detection stuff
+    private EnemyVision enemyVision;
+    public GameObject detectionImage;
+
     //define different states & switches between them
     public enum EnemyState { Idle, Patrol, Chase, Attack, Death }
     public EnemyState currentState;
@@ -21,7 +25,7 @@ public class EnemyAI : MonoBehaviour
     //enemy states loaded from json
     public string enemyType;
     private float maxHealth;
-    private float currentHealth;
+    [HideInInspector] public float currentHealth;
     private float speed;
     private float detectionRange = 10f;
     private float attackRange;
@@ -45,6 +49,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        enemyVision = GetComponent<EnemyVision>();
         agent = GetComponent<NavMeshAgent>();
         LoadEnemyData(enemyType);
         currentHealth = maxHealth;
@@ -75,8 +80,16 @@ public class EnemyAI : MonoBehaviour
         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
+        if(enemyVision.IsDetected() == true)
+        {
+            detectionImage.SetActive(true);
+        }
+        else
+        {
+            detectionImage.SetActive(false);
+        }
 
-        if(currentAttackCooldown > 0)
+        if (currentAttackCooldown > 0)
         {
             currentAttackCooldown -= Time.deltaTime;
         }
@@ -95,7 +108,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Patrol:
                 PatrolBehavior();
-                if(distanceToPlayer <= detectionRange)
+                if(enemyVision.IsDetected())//*distanceToPlayer <= detectionRange*/)
                 {
                     ChangeState(EnemyState.Chase);
                 }

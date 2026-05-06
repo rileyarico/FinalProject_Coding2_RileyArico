@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3852315573692598627
+--- !u!1 &6897326129545863801
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,100 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3175443986156459057}
-  - component: {fileID: 5028145223238388907}
+  - component: {fileID: 7011490432102156206}
+  - component: {fileID: 8801358456507175797}
+  - component: {fileID: 6378536288447462012}
   m_Layer: 0
-  m_Name: Pistol_Gun_Model
+  m_Name: ImpactEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3175443986156459057
+--- !u!4 &7011490432102156206
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852315573692598627}
+  m_GameObject: {fileID: 6897326129545863801}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2243943658583530931}
-  - {fileID: 3410238611125842258}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5028145223238388907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852315573692598627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba5043cad80afa4ead1b318fc9fab55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  bulletPrefab: {fileID: 555078056924961318, guid: 10fad8264c5e4624ba99ac528a6c5dd5, type: 3}
-  bulletLifeTime: 5
-  bulletVelocity: 20
-  playerCam: {fileID: 0}
-  damage: 3
-  range: 100
-  muzzleFlash: {fileID: 6566488074922597444}
-  impactEffect: {fileID: 6897326129545863801, guid: c543438e83ce3ae44b08fe989a4c2437, type: 3}
-  impactForce: 30
-  weaponName: Pistol
-  maxAmmo: 12
-  activeAmmo: 0
-  heldExtraAmmo: 0
-  fireCooldown: 0.75
---- !u!1 &8696062787021246469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3410238611125842258}
-  - component: {fileID: 6566488074922597444}
-  - component: {fileID: 3798233560746315305}
-  m_Layer: 0
-  m_Name: MuzzleFlash
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3410238611125842258
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8696062787021246469}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.3038, y: 0.0342, z: 0}
-  m_LocalScale: {x: 0.04541, y: 0.04541, z: 0.04541}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.1013, y: 0, z: -0.0566}
+  m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3175443986156459057}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
---- !u!198 &6566488074922597444
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!198 &8801358456507175797
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8696062787021246469}
+  m_GameObject: {fileID: 6897326129545863801}
   serializedVersion: 8
-  lengthInSec: 0.2
+  lengthInSec: 0.15
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -110,9 +50,9 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -176,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.04
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -229,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.06
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -283,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.7816981, b: 0.5801887, a: 1}
+      maxColor: {r: 0.5943396, g: 0.555793, b: 0.48500353, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -347,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -664,7 +604,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 1
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -3880,12 +3820,12 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 0
-    ratio: 0.1
+    ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
-    color: 0
-    range: 0
-    intensity: 0
+    color: 1
+    range: 1
+    intensity: 1
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -4816,14 +4756,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &3798233560746315305
+--- !u!199 &6378536288447462012
 ParticleSystemRenderer:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8696062787021246469}
+  m_GameObject: {fileID: 6897326129545863801}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4896,65 +4836,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!1001 &1778552018133187160
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3175443986156459057}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-      propertyPath: m_Name
-      value: PistolModel
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
---- !u!4 &2243943658583530931 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ae684ea97ab493b47a7dcb1054e35165, type: 3}
-  m_PrefabInstance: {fileID: 1778552018133187160}
-  m_PrefabAsset: {fileID: 0}

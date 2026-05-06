@@ -12,6 +12,13 @@ public class Weapon : MonoBehaviour
     public float bulletVelocity = 20f;
     public Camera playerCam;
 
+    [Header("New Bullet System")]
+    public float damage = 1f;
+    public float range = 100f;
+    public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
+    public float impactForce = 30f;
+
     //ammo management
     public string weaponName;
     public int maxAmmo = 5;
@@ -71,6 +78,30 @@ public class Weapon : MonoBehaviour
 
     void Fire()
     {
+        //new function
+        muzzleFlash.Play();
+
+        RaycastHit hit;
+        if( Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit)) //range could go here at the end, but I want to leave it out
+        {
+            Debug.Log(hit.transform.name);
+            EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+            if(enemy != null)
+            {
+                enemy.currentHealth -= damage;
+            }
+
+            if(hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
+
+            GameObject impactGameobject = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactGameobject, 1f);
+
+        }
+
+        /*
         //the direction we want the bullet to go in
          Vector3 direction = -transform.right; //Oh my god idk why this works but doing "-" makes it rotate -90*
         //we want to take the position of our weapon & add transform.up and then offset it so it is in front.
@@ -78,7 +109,6 @@ public class Weapon : MonoBehaviour
 
         //Quaternion rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
 
-        RaycastHit hit;
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 100f))
         {
             //spawn bullet
@@ -89,6 +119,7 @@ public class Weapon : MonoBehaviour
             //destroy bullet after some time (after 3 seconds)
             Destroy(bullet, bulletLifeTime);
         }
+        */
 
     }
 
