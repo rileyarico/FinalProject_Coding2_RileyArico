@@ -23,13 +23,13 @@ public class EnemyAI : MonoBehaviour
     private int currentPatrolIndex;
 
     //enemy states loaded from json
-    public string enemyType;
-    private float maxHealth;
+    public string enemyType = "Normal";
+    private float maxHealth = 10;
     [HideInInspector] public float currentHealth;
-    private float speed;
+    private float speed = 4f;
     private float detectionRange = 10f;
-    private float attackRange;
-    private float attackCoolDown;
+    private float attackRange = 1.35f;
+    private float attackCoolDown = 2;
     private float currentAttackCooldown = 0;
 
     private float lastAttackTime;
@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
     {
         enemyVision = GetComponent<EnemyVision>();
         agent = GetComponent<NavMeshAgent>();
-        LoadEnemyData(enemyType);
+        //LoadEnemyData(enemyType);
         currentHealth = maxHealth;
         
         currentState = EnemyState.Patrol; //start with patrolling

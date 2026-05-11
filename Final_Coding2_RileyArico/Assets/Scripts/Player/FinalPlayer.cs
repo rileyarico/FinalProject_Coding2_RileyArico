@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FinalPlayer : MonoBehaviour
@@ -43,6 +44,10 @@ public class FinalPlayer : MonoBehaviour
     }
     private void Update()
     {
+        if(currentHealth <= 0)
+        {
+            SceneManager.LoadScene("Lose");
+        }
         CameraLook();
         GroundCheck();
         healthBarImg.fillAmount = currentHealth / maxHealth;

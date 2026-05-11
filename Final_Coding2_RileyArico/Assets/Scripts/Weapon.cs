@@ -1,8 +1,6 @@
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class Weapon : MonoBehaviour
 {
