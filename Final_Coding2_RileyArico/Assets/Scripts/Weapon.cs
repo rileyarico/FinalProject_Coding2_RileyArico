@@ -91,6 +91,12 @@ public class Weapon : MonoBehaviour
                 enemy.currentHealth -= damage;
             }
 
+            Target targ = hit.transform.GetComponent<Target>();
+            if(targ != null)
+            {
+                targ.currentHealth -= damage;
+            }
+
             if(hit.rigidbody != null)
             {
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
