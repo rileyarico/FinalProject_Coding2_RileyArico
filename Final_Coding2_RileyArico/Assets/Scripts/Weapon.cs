@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public float range = 100f;
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
-    public float impactForce = 30f;
+    public float impactForce = 60f;
 
     //ammo management
     public string weaponName;
@@ -100,6 +100,7 @@ public class Weapon : MonoBehaviour
             if(hit.rigidbody != null)
             {
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
+                Debug.Log("Did " + (-hit.normal * impactForce) + " force");
             }
 
             GameObject impactGameobject = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
