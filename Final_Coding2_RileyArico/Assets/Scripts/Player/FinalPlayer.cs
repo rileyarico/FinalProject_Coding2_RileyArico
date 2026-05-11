@@ -46,7 +46,7 @@ public class FinalPlayer : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
-            SceneManager.LoadScene("Lose");
+            SceneManager.LoadScene("LoseScreen");
         }
         CameraLook();
         GroundCheck();

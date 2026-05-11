@@ -51,26 +51,10 @@ public class EnemyAI : MonoBehaviour
     {
         enemyVision = GetComponent<EnemyVision>();
         agent = GetComponent<NavMeshAgent>();
-        //LoadEnemyData(enemyType);
+        LoadEnemyData(enemyType);
         currentHealth = maxHealth;
         
         currentState = EnemyState.Patrol; //start with patrolling
-    }
-    private void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.GetComponent<Bullet>() != null)
-        {
-            collisionCount++;
-            float dmg = other.gameObject.GetComponent<Bullet>().damage;
-            if (collisionCount <= 1)
-            {
-                currentHealth -= dmg;
-                Destroy(other.gameObject);
-                collisionCount = 0;
-            }
-            Debug.Log("Dealt " + dmg + "to enemy");
-            Debug.Log("Health is " + currentHealth);
-        }
     }
 
     void Update()
