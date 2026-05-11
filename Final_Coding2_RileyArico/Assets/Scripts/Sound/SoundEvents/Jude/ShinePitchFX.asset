@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2abd6a64c83ff45bf17ebeb564d690, type: 3}
+  m_Name: ShinePitchFX
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 9d8e2c06a6323624b84faa744e3e50a8, type: 3}
+  category: 3
+  volume: 1
+  pitch: 1
+  pitchRandomization: 0
+  loop: 0
+  cooldown: 0
