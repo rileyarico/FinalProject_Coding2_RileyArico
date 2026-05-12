@@ -495,6 +495,7 @@ MonoBehaviour:
   - {fileID: 0}
   enemyType: Normal
   currentHealth: 0
+  enemyAlertSound: {fileID: 11400000, guid: 6573312536ce73443a93ced466d23f71, type: 2}
   healthBar: {fileID: 3884958927379422103}
   vFXSpritePrefab: {fileID: 6380601679899105383, guid: f20ce874a2d706c47b99504a975ebefe, type: 3}
   dropLoot: {fileID: 0}

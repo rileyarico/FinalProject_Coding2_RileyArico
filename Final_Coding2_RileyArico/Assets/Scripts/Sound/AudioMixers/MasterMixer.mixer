@@ -14,6 +14,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-1907600503744986705
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4850831fb8470614e83cb7470b7b19cd
+  m_EffectName: Send
+  m_MixLevel: 71142ea91a59638468016c7c50b80c1b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-191842497659840352
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -51,6 +65,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 4c854cd3f51773547839bfd8f5973eee
     name: GameSFX_Volume
+  - guid: 08f26473b7091554888b5583b228a89a
+    name: Master_Volume
   - guid: dbc136d5c73763440ae2061d28b613b9
     name: Music_Volume
   - guid: 93ffea65c613d134c828455308daf705

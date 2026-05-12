@@ -11,6 +11,6 @@ public class SoundPlayer : MonoBehaviour
     }
     public void PlayThis(SoundEvent sound)
     {
-        SoundManager.Instance.PlaySound(sound);
+        SoundManager.Instance.PlayLoop(sound);
     }
 }

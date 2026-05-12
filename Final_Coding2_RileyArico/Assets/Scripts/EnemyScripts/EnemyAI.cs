@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     private float attackRange = 1.35f;
     private float attackCoolDown = 2;
     private float currentAttackCooldown = 0;
+    public SoundEvent enemyAlertSound;
+    private SoundManager soundManager;
 
     private float lastAttackTime;
     private int collisionCount = 0;
@@ -53,6 +55,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         LoadEnemyData(enemyType);
         currentHealth = maxHealth;
+        soundManager = FindFirstObjectByType<SoundManager>();
         
         currentState = EnemyState.Patrol; //start with patrolling
     }
@@ -94,6 +97,7 @@ public class EnemyAI : MonoBehaviour
                 PatrolBehavior();
                 if(enemyVision.IsDetected())//*distanceToPlayer <= detectionRange*/)
                 {
+                    soundManager.PlaySound(enemyAlertSound);
                     ChangeState(EnemyState.Chase);
                 }
                 break;
@@ -104,7 +108,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     ChangeState(EnemyState.Attack);
                 }
-                else if(distanceToPlayer > attackCoolDown)
+                else if(distanceToPlayer > detectionRange)
                 {
                     ChangeState(EnemyState.Patrol);
                 }

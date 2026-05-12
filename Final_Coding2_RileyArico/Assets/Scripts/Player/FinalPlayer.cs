@@ -46,6 +46,8 @@ public class FinalPlayer : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
             SceneManager.LoadScene("LoseScreen");
         }
         CameraLook();

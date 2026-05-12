@@ -60,6 +60,8 @@ MonoBehaviour:
   activeAmmo: 0
   heldExtraAmmo: 0
   fireCooldown: 0.75
+  reload: {fileID: 11400000, guid: 60e7ac7232b3dc94fa30d8a0cd8a84e0, type: 2}
+  shoot: {fileID: 11400000, guid: e9725d4fe0d253148948831d0c118bf0, type: 2}
 --- !u!1 &8696062787021246469
 GameObject:
   m_ObjectHideFlags: 0
