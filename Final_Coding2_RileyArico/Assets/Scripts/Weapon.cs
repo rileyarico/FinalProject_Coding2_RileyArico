@@ -28,10 +28,16 @@ public class Weapon : MonoBehaviour
     private float timer = 0;
     private bool canFire = true;
 
+    //sfx
+    private SoundManager soundManager;
+    public SoundEvent reload;
+    public SoundEvent shoot;
+
     private void Start()
     {
         activeAmmo = maxAmmo;
         playerCam = Camera.main;
+        soundManager = FindFirstObjectByType<SoundManager>();
     }
 
     void Update()
@@ -60,6 +66,7 @@ public class Weapon : MonoBehaviour
             Debug.Log("Fire Performed");
             //perform fire
             Fire();
+            soundManager.PlaySound(shoot);
             timer = fireCooldown;
             activeAmmo -= 1;
         }
@@ -132,7 +139,8 @@ public class Weapon : MonoBehaviour
     {
         //idk if we will use this
         if (heldExtraAmmo > 0)
-        { 
+        {
+            soundManager.PlaySound(reload);
             //check the amount of ammo missing from active
             int emptyammo = maxAmmo - activeAmmo;
 
