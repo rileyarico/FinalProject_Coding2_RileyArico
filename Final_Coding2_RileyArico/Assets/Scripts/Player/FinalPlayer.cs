@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,8 @@ public class FinalPlayer : MonoBehaviour
     public float groundCheckDistance = 0.5f;
     public bool isGrounded;
     public Transform groundCheck;
+
+    public static event Action<NPCData> OnDialogueRequested;
 
     private void Start()
     {
@@ -134,6 +137,10 @@ public class FinalPlayer : MonoBehaviour
     public void OnSprint(InputAction.CallbackContext context)
     {
         isRunning = context.ReadValueAsButton();
+    }
+    public void RequestDialogue(NPCData npcData)
+    {
+        OnDialogueRequested?.Invoke(npcData);
     }
     private void OnDrawGizmosSelected()
     {

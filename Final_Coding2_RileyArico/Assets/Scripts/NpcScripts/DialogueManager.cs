@@ -15,9 +15,9 @@ public class DialogueManager : MonoBehaviour
     public Transform choicesContainer; //parent object where choice buttons will spawn
     public Button choiceButtonPrefab; //prefab for a single choice button
 
-    [Header("Request")]
+    /*[Header("Request")]
     public GameObject requestPanel; //RequestSlot is a child of this.
-    public TextMeshProUGUI requestText;
+    public TextMeshProUGUI requestText;*/
 
     private NPCData currentNode; //current node we are reading from the scriptable object (SO)
     private int lineIndex; //which line index we are currently on, keeping track of the dialogue
@@ -56,14 +56,14 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         CCPlayer.OnDialogueRequested += StartDialogue;
-        CCPlayer.OnCheckItem += CheckRequest;
+        //CCPlayer.OnCheckItem += CheckRequest;
 
     }
 
     private void OnDisable()
     {
         CCPlayer.OnDialogueRequested -= StartDialogue;
-        CCPlayer.OnCheckItem -= CheckRequest;
+        //CCPlayer.OnCheckItem -= CheckRequest;
         
     }
 
@@ -206,7 +206,7 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    void ShowRequest(InventoryItem requestingItem)
+    /*void ShowRequest(InventoryItem requestingItem)
     {
         Debug.Log("attempting to make RequestPanel visible");
         //we need to make request panel active
@@ -220,7 +220,7 @@ public class DialogueManager : MonoBehaviour
     {
         requestPanel.SetActive(false);
         requestText.text = "";
-    }
+    }*/
 
     void FinishNode()
     {
@@ -236,12 +236,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         //if NPC is requesting an item, show the request slot
-        if (currentNode.requestingItem != null)
+        /*if (currentNode.requestingItem != null)
         {
             //Debug.Log("calling ShowRequest()");
             ShowRequest(currentNode.requestingItem);
             return;
-        }
+        }*/
 
         //auto continue our text
 
@@ -360,7 +360,7 @@ public class DialogueManager : MonoBehaviour
         //requestText.text = "";
     }
 
-    void CheckRequest(Item droppedItem)
+    /*void CheckRequest(Item droppedItem)
     {
         if (currentNode == null) return;
         if (currentNode.requestingItem == null) return; // NPC wants nothing
@@ -388,7 +388,7 @@ public class DialogueManager : MonoBehaviour
                     }
                     /*GameObject questMarter = npcInteract.GetComponentInChildren<GameObject>();
                     questMarter.SetActive(false);
-                    npcInteract.*/
+                    npcInteract.*//*
                 }
             }
 
@@ -412,6 +412,6 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Wrong item.");
         }
         
-    }
+    }*/
 
 }
